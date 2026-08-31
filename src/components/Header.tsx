@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
-import { ArrowRight } from "./icons";
+import { WalletButton } from "./WalletButton";
 import { nav, token } from "@/config/brand";
 
 export function Header() {
@@ -30,10 +30,7 @@ export function Header() {
           ))}
         </nav>
 
-        <a className="btn" href={token.buyUrl} target="_blank" rel="noreferrer noopener">
-          Buy {token.ticker}
-          <ArrowRight />
-        </a>
+        <WalletButton />
       </div>
     </header>
   );

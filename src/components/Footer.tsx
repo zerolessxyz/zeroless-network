@@ -1,5 +1,5 @@
 import { Logo } from "./Logo";
-import { ArrowRight, DiscordLogo, StreamflowLogo, TelegramLogo, XLogo } from "./icons";
+import { ArrowRight, GithubLogo, StreamflowLogo, XLogo } from "./icons";
 import { brand, links, token } from "@/config/brand";
 
 const columns = [
@@ -51,12 +51,15 @@ export function Footer() {
               <a className="icon-btn" href={links.x} target="_blank" rel="noreferrer noopener" aria-label="X">
                 <XLogo size={15} />
               </a>
-              <span className="icon-btn" style={{ opacity: 0.4 }} aria-hidden="true">
-                <TelegramLogo size={15} />
-              </span>
-              <span className="icon-btn" style={{ opacity: 0.4 }} aria-hidden="true">
-                <DiscordLogo size={15} />
-              </span>
+              <a
+                className="icon-btn"
+                href={links.github}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="GitHub"
+              >
+                <GithubLogo size={15} />
+              </a>
               <a
                 className="icon-btn"
                 href={links.streamflow}

@@ -11,16 +11,22 @@ Live: [zeroless.xyz](https://zeroless.xyz)
 - TypeScript
 - Tailwind CSS v4 + a hand-written design layer in `src/app/globals.css`
 - Geist via `next/font/google`
-- No database, no analytics, no wallet connection — the page is fully static
+- Wallet sign-in over the Wallet Standard handshake — no wallet SDK in the bundle
+- No database and no analytics; every page is static apart from three auth routes
 
 ## Getting started
 
 ```bash
 npm install
+cp .env.example .env.local   # then fill in AUTH_SECRET
 npm run dev
 ```
 
 The site runs at `http://localhost:3000`.
+
+`AUTH_SECRET` signs the wallet session cookie and must be at least 32
+characters (`openssl rand -base64 48`). Without it the app still builds and
+still serves every page — it fails only when a session cookie is read.
 
 ```bash
 npm run build   # production build
@@ -37,9 +43,19 @@ src/
     layout.tsx        fonts, metadata
     globals.css       design tokens + component styles
     risk|terms|privacy  short legal pages
+    api/auth/         nonce, verify, session — wallet sign-in
   components/         one file per section
   config/brand.ts     name, token, links — single source of truth
+  lib/                wallet discovery, signing, session cookie
 ```
+
+## Wallet sign-in
+
+Connecting is identity only. The server issues a nonce, the wallet signs a
+readable statement carrying it, and the signature is checked against the claimed
+address before an httpOnly session cookie is issued. It is a message signature,
+not a transaction: no funds move and no network fee is paid. Nothing on the site
+is gated behind it yet.
 
 ## Editing the token details
 

@@ -23,8 +23,6 @@ export const token = {
 
 export const links = {
   x: "https://x.com/zeroless_xyz",
-  telegram: "",
-  discord: "",
   streamflow: "https://app.streamflow.finance/contract/solana/mainnet/",
   phantom: "https://phantom.app/download",
   github: "https://github.com/zerolessxyz/zeroless-network",
